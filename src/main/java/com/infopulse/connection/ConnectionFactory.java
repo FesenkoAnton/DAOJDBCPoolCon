@@ -7,11 +7,23 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class ConnectionFactory {
     static Properties proper = new Properties();
     private static String pathToProper = "C:/Projects/statement1/lib/db.properties";
+
+//    private static ConnectionFactory connectionFactory = new ConnectionFactory();
+//
+//    ConnectionFactory(){
+//        getPropertiesConnection();
+//    }
+//
+//    public static ConnectionFactory getInstance(){
+//        return connectionFactory;
+//    }
 
     public static Connection getConnection() {
         getPropertiesConnection();
@@ -41,5 +53,4 @@ public class ConnectionFactory {
             throw new RuntimeException("File Not Found properties", e);
         }
     }
-
 }

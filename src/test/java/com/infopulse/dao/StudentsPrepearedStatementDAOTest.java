@@ -10,7 +10,7 @@ public class StudentsPrepearedStatementDAOTest {
 //
 //        ConnectionFactory.setPASSWORD("anton1!");
 
-        StudentsPrepearedStatementDAO sps = new StudentsPrepearedStatementDAO();
+        StudentsDAO sps = new StudentsPrepearedStatementDAO();
 //        System.out.println(sps.insertStudent(27,"Oleg",21,1));
 
         sps.getAllStudents().forEach(System.out::println);
