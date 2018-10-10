@@ -70,8 +70,8 @@
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionTimestamp>2018-10-03.17:14:31.426</IntrospectionTimestamp>
-      <IntrospectionStateNumber>669</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-10-04.17:43:06.199</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1174</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -117,7 +117,23 @@
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="21" parent="14" name="students_id_seq">
+    <sequence id="21" parent="14" name="country_id_seq">
+      <ObjectId>25660</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1173</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+    </sequence>
+    <sequence id="22" parent="14" name="nationality_id_seq">
+      <ObjectId>25668</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1174</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+    </sequence>
+    <sequence id="23" parent="14" name="students_id_seq">
       <ObjectId>16395</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>546</StateNumber>
@@ -125,17 +141,27 @@
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
     </sequence>
-    <table id="22" parent="14" name="lll_lll">
+    <table id="24" parent="14" name="country">
+      <ObjectId>25662</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1173</StateNumber>
+    </table>
+    <table id="25" parent="14" name="lll_lll">
       <ObjectId>16510</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>669</StateNumber>
     </table>
-    <table id="23" parent="14" name="students">
+    <table id="26" parent="14" name="nationality">
+      <ObjectId>25670</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1174</StateNumber>
+    </table>
+    <table id="27" parent="14" name="students">
       <ObjectId>16397</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>546</StateNumber>
     </table>
-    <routine id="24" parent="14" name="add_student">
+    <routine id="28" parent="14" name="add_student">
       <ObjectId>16408</ObjectId>
       <Owner>postgres</Owner>
       <SourceTextLength>169</SourceTextLength>
@@ -146,7 +172,7 @@
       <RoutineKind>function</RoutineKind>
       <Cost>100.0</Cost>
     </routine>
-    <routine id="25" parent="14" name="add_student1">
+    <routine id="29" parent="14" name="add_student1">
       <ObjectId>16490</ObjectId>
       <Owner>postgres</Owner>
       <SourceTextLength>58</SourceTextLength>
@@ -158,7 +184,7 @@
       <RoutineKind>function</RoutineKind>
       <Cost>100.0</Cost>
     </routine>
-    <routine id="26" parent="14" name="add_student2">
+    <routine id="30" parent="14" name="add_student2">
       <ObjectId>16497</ObjectId>
       <Owner>postgres</Owner>
       <SourceTextLength>193</SourceTextLength>
@@ -169,7 +195,7 @@
       <RoutineKind>function</RoutineKind>
       <Cost>100.0</Cost>
     </routine>
-    <routine id="27" parent="14" name="getName">
+    <routine id="31" parent="14" name="getName">
       <ObjectId>16407</ObjectId>
       <Owner>postgres</Owner>
       <SourceTextLength>135</SourceTextLength>
@@ -180,7 +206,7 @@
       <RoutineKind>function</RoutineKind>
       <Cost>100.0</Cost>
     </routine>
-    <routine id="28" parent="14" name="totalrecords">
+    <routine id="32" parent="14" name="totalrecords">
       <ObjectId>16405</ObjectId>
       <Owner>postgres</Owner>
       <SourceTextLength>97</SourceTextLength>
@@ -191,28 +217,55 @@
       <RoutineKind>function</RoutineKind>
       <Cost>100.0</Cost>
     </routine>
-    <column id="29" parent="22" name="user_id">
+    <column id="33" parent="24" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1173</StateNumber>
+      <DefaultExpression>nextval(&apos;country_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+      <SequenceName>country_id_seq</SequenceName>
+    </column>
+    <column id="34" parent="24" name="name">
+      <Position>2</Position>
+      <DataType>varchar(128)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1173</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="35" parent="24" name="country_pkey">
+      <ObjectId>25666</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="36" parent="24" name="country_pkey">
+      <ObjectId>25667</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>country_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="37" parent="25" name="user_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>669</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="30" parent="22" name="username">
+    <column id="38" parent="25" name="username">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>669</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="31" parent="22" name="password">
+    <column id="39" parent="25" name="password">
       <Position>3</Position>
       <DataType>varchar(450)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>669</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="32" parent="22" name="enabled">
+    <column id="40" parent="25" name="enabled">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -220,18 +273,45 @@
       <DefaultExpression>1</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <index id="33" parent="22" name="lll_lll_pkey">
+    <index id="41" parent="25" name="lll_lll_pkey">
       <ObjectId>16514</ObjectId>
       <ColNames>user_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="34" parent="22" name="lll_lll_pkey">
+    <key id="42" parent="25" name="lll_lll_pkey">
       <ObjectId>16515</ObjectId>
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>lll_lll_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="35" parent="23" name="id">
+    <column id="43" parent="26" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1174</StateNumber>
+      <DefaultExpression>nextval(&apos;nationality_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+      <SequenceName>nationality_id_seq</SequenceName>
+    </column>
+    <column id="44" parent="26" name="name">
+      <Position>2</Position>
+      <DataType>varchar(128)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1174</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="45" parent="26" name="nationality_pkey">
+      <ObjectId>25674</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="46" parent="26" name="nationality_pkey">
+      <ObjectId>25675</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>nationality_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="47" parent="27" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -240,59 +320,59 @@
       <TypeId>23</TypeId>
       <SequenceName>students_id_seq</SequenceName>
     </column>
-    <column id="36" parent="23" name="name">
+    <column id="48" parent="27" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>546</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="37" parent="23" name="age">
+    <column id="49" parent="27" name="age">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>546</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="38" parent="23" name="groups">
+    <column id="50" parent="27" name="groups">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>561</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="39" parent="23" name="students_pkey">
+    <index id="51" parent="27" name="students_pkey">
       <ObjectId>16401</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="40" parent="23" name="students_pkey">
+    <key id="52" parent="27" name="students_pkey">
       <ObjectId>16402</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>students_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <argument id="41" parent="24">
+    <argument id="53" parent="28">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>void|0s</DataType>
     </argument>
-    <argument id="42" parent="25" name="nam">
+    <argument id="54" parent="29" name="nam">
       <Position>1</Position>
       <DataType>varchar|0s</DataType>
     </argument>
-    <argument id="43" parent="25">
+    <argument id="55" parent="29">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>void|0s</DataType>
     </argument>
-    <argument id="44" parent="26">
+    <argument id="56" parent="30">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>void|0s</DataType>
     </argument>
-    <argument id="45" parent="27">
+    <argument id="57" parent="31">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>void|0s</DataType>
     </argument>
-    <argument id="46" parent="28">
+    <argument id="58" parent="32">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>integer|0s</DataType>
     </argument>

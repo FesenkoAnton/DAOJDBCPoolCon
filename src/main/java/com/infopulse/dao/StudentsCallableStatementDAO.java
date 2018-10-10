@@ -1,13 +1,12 @@
 package com.infopulse.dao;
 
+import com.infopulse.connection.Connect;
 import com.infopulse.students.Student;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Set;
-
-import static com.infopulse.connection.ConnectionFactory.getConnection;
 
 
 public class StudentsCallableStatementDAO implements StudentsDAO {
@@ -36,12 +35,29 @@ public class StudentsCallableStatementDAO implements StudentsDAO {
     public void deleteUser() {
 
     }
+
     public void createTable() {
-        try (Connection con = getConnection();
-             CallableStatement cs = con.prepareCall("{call add_student2()}");) {
+        Connection con = null;
+        CallableStatement cs = null;
+        try {
+            con = Connect.getConn();
+            try {
+                cs = con.prepareCall("{call add_student2()}");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
             cs.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                cs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            Connect.putConn(con);
         }
+
     }
 }

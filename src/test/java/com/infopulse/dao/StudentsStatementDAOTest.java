@@ -12,7 +12,7 @@ public class StudentsStatementDAOTest {
 //        ConnectionFactory.setPASSWORD("anton1!");
 
         StudentsStatementDAO student = new StudentsStatementDAO();
-//        System.out.println(student.getStudent(1));
+        System.out.println(student.getStudent(1));
 
     }
 }

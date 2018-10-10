@@ -1,15 +1,15 @@
 package com.infopulse.dao;
 
+import com.infopulse.connection.Connect;
 import com.infopulse.students.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import static com.infopulse.connection.ConnectionFactory.getConnection;
 
 public class StudentsPrepearedStatementDAO implements StudentsDAO {
     @Override
@@ -19,8 +19,11 @@ public class StudentsPrepearedStatementDAO implements StudentsDAO {
 
     @Override
     public Set<Student> getAllStudents() {
-        try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement(SQLStudent.SELECT.QUERY);) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+                con = Connect.getConn();
+             ps = con.prepareStatement(SQLStudent.SELECT.QUERY);
 
             Set<Student> students = new HashSet<>();
 
@@ -39,23 +42,45 @@ public class StudentsPrepearedStatementDAO implements StudentsDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            Connect.putConn(con);
         }
-        return null;//return empty SET
+        return Collections.emptySet();
     }
 
     @Override
     public void insertStudent(Long id, String name, int age, int groups) {
-        try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement(SQLStudent.INSERT.QUERY);) {
+//        try (Connection con = getConnection();
+//             PreparedStatement ps = con.prepareStatement(SQLStudent.INSERT.QUERY);) {
 
-            ps.setLong(1, id);
-            ps.setString(2, name);
-            ps.setInt(3, age);
-            ps.setInt(4, groups);
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = Connect.getConn();
+            ps = con.prepareStatement(SQLStudent.INSERT.QUERY);
+//            ps.setLong(1, id);
+//            ps.setString(2, name);
+//            ps.setInt(3, age);
+//            ps.setInt(4, groups);
+            ps.setString(1, name);
+            ps.setInt(2, age);
+            ps.setInt(3, groups);
             ps.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            Connect.putConn(con);
         }
 
     }
@@ -77,7 +102,10 @@ public class StudentsPrepearedStatementDAO implements StudentsDAO {
 
 
     enum SQLStudent {
-        INSERT("INSERT INTO students (id, name, age, groups) VALUES (?,?,?,?)"),
+//        INSERT("INSERT INTO students (id, name, age, groups) VALUES (?,?,?,?)"),
+
+        INSERT("INSERT INTO students (id, name, age, groups) VALUES (?,?,?)"),
+
         SELECT("SELECT * FROM students");
 
         String QUERY;

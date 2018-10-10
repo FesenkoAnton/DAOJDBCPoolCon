@@ -1,6 +1,5 @@
 package com.infopulse.dao;
 
-import com.infopulse.students.Student;
 import org.junit.Test;
 
 public class StudentsPrepearedStatementDAOTest {
@@ -13,10 +12,12 @@ public class StudentsPrepearedStatementDAOTest {
         StudentsDAO sps = new StudentsPrepearedStatementDAO();
 //        System.out.println(sps.insertStudent(27,"Oleg",21,1));
 
-        sps.getAllStudents().forEach(System.out::println);
-        for (
-                Student st : sps.getAllStudents())
-            System.out.println(st);
+        sps.insertStudent((long) 56,"Lolita",24,7);
+
+//        sps.getAllStudents().forEach(System.out::println);
+//        for (
+//                Student st : sps.getAllStudents())
+//            System.out.println(st);
 
     }
 }

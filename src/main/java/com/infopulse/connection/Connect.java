@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 public class Connect {
 
-    static ConnectPool connectPool = new ConnectPool();
+    private static ConnectPool connectPool = new ConnectPool();
 
     public static Connection getConn(){
         Connection connection = connectPool.getFromPoolCon();

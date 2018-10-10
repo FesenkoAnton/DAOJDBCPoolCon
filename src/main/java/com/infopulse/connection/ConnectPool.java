@@ -1,11 +1,16 @@
 package com.infopulse.connection;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ConnectPool {
-    List<Connection> conn = new ArrayList<Connection>();
+    private static final Logger logger = Logger.getLogger(ConnectPool.class);
+    private final int MAX_CONNECT=5;
+    private List<Connection> conn = new ArrayList<>();
 
     ConnectPool(){
         fullConnectPool();
@@ -18,7 +23,6 @@ public class ConnectPool {
     }
 
     private synchronized boolean checkPoolIsFull() {
-        final int MAX_CONNECT = Integer.parseInt(ConnectionFactory.proper.getProperty("DB_MAX_CONNECTIONS"));
         if (conn.size() < MAX_CONNECT) {
             return false;
         }
@@ -35,7 +39,11 @@ public class ConnectPool {
     }
 
     public synchronized void conToPool(Connection connection) {
-        conn.add(connection);
+        if(conn.size() < 5) {
+            conn.add(connection);
+        }else{
+            logger.error("try do conn.size > max value.");
+        }
     }
 
 

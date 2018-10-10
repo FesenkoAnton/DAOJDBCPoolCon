@@ -1,5 +1,6 @@
 package com.infopulse.dao;
 
+import com.infopulse.connection.Connect;
 import com.infopulse.students.Student;
 
 import java.sql.Connection;
@@ -8,16 +9,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Set;
 
-import static com.infopulse.connection.ConnectionFactory.getConnection;
-
 
 public class StudentsStatementDAO implements StudentsDAO {
 
     @Override
     public Student getStudent(int id) {
+        Connection con = null;
+        Statement statement = null;
 
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement();) {
+        try {
+            con = Connect.getConn();
+            statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(SQLStudent.SELECT.QUERY + id);
 
             if (resultSet.next()) {
@@ -31,8 +33,18 @@ public class StudentsStatementDAO implements StudentsDAO {
                 return student;
             }
 
+
+
         } catch (SQLException e) {
             e.printStackTrace();//runtime
+        }
+    finally {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            Connect.putConn(con);
         }
 
         return null;
