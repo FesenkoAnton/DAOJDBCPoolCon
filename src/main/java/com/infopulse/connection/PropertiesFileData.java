@@ -1,5 +1,7 @@
 package com.infopulse.connection;
 
+import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,30 +9,42 @@ import java.util.Properties;
 
 public class PropertiesFileData {
 
-    private Properties proper;
-    private String pathToProper = "C:\\Projects\\DAOJDBCPoolCon\\src\\main\\resources\\db.properties";
+    private static final Logger logger = Logger.getLogger(PropertiesFileData.class);
+    private Properties properties;
+    private String pathToProperties = "C:\\Projects\\DAOJDBCPoolCon\\src\\main\\resources\\db.properties";
 
     public PropertiesFileData() {
         getPropertiesConnection();
     }
 
-    public Properties getProper() {
-        return proper;
+    public Properties getProperties() {
+        return properties;
     }
 
     private void getPropertiesConnection() {
-        proper = new Properties();
-        FileInputStream fileInStr = null;
+        properties = new Properties();
+        FileInputStream fileInputStream = null;
         try {
-            fileInStr = new FileInputStream(pathToProper);
+            fileInputStream = new FileInputStream(pathToProperties);
             try {
-                proper.load(fileInStr);
+                properties.load(fileInputStream);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                logger.error(e);
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("File Not Found properties", e);
+            logger.error(e);
+        } finally {
+            try {
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }else{
+                    logger.error("Not correct address of path properties");
+                }
+            } catch (IOException e) {
+                logger.error(e);
+            }
         }
     }
-
 }
+
+

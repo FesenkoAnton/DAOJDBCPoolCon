@@ -1,7 +1,8 @@
 package com.infopulse.dao;
 
-import com.infopulse.connection.Connect;
+import com.infopulse.connection.MainConnect;
 import com.infopulse.students.Student;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class StudentsPrepearedStatementDAO implements StudentsDAO {
+
+    private static final Logger logger = Logger.getLogger(StudentsPrepearedStatementDAO.class);
+
     @Override
     public Student getStudent(int i) {
         return null;
@@ -19,68 +23,61 @@ public class StudentsPrepearedStatementDAO implements StudentsDAO {
 
     @Override
     public Set<Student> getAllStudents() {
-        Connection con = null;
-        PreparedStatement ps = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
-                con = Connect.getConn();
-             ps = con.prepareStatement(SQLStudent.SELECT.QUERY);
+            connection = MainConnect.getConnect();
+            preparedStatement = connection.prepareStatement(SQLStudent.SELECT.QUERY);
 
             Set<Student> students = new HashSet<>();
 
-            ResultSet rs = ps.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
+            while (resultSet.next()) {
                 Student student = new Student();
-                student.setId(rs.getLong("id"));
-                student.setName(rs.getString("name"));
-                student.setAge(rs.getInt("age"));
-                student.setGroups(rs.getInt("groups"));
+                student.setId(resultSet.getLong("id"));
+                student.setName(resultSet.getString("name"));
+                student.setAge(resultSet.getInt("age"));
+                student.setGroups(resultSet.getInt("groups"));
                 students.add(student);
             }
-
             return students;
-
         } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+            logger.error(e);
+        } finally {
             try {
-                ps.close();
+                preparedStatement.close();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                logger.error(e);
             }
-            Connect.putConn(con);
+            MainConnect.putConn(connection);
         }
         return Collections.emptySet();
     }
 
     @Override
     public void insertStudent(Long id, String name, int age, int groups) {
-//        try (Connection con = getConnection();
-//             PreparedStatement ps = con.prepareStatement(SQLStudent.INSERT.QUERY);) {
 
-        Connection con = null;
-        PreparedStatement ps = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
-            con = Connect.getConn();
-            ps = con.prepareStatement(SQLStudent.INSERT.QUERY);
-//            ps.setLong(1, id);
-//            ps.setString(2, name);
-//            ps.setInt(3, age);
-//            ps.setInt(4, groups);
-            ps.setString(1, name);
-            ps.setInt(2, age);
-            ps.setInt(3, groups);
-            ps.executeUpdate();
+            connection = MainConnect.getConnect();
+            preparedStatement = connection.prepareStatement(SQLStudent.INSERT.QUERY);
+            preparedStatement.setLong(1, id);
+            preparedStatement.setString(2, name);
+            preparedStatement.setInt(3, age);
+            preparedStatement.setInt(4, groups);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e);
         } finally {
             try {
-                ps.close();
+                preparedStatement.close();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                logger.error(e);
             }
-            Connect.putConn(con);
+            MainConnect.putConn(connection);
         }
 
     }
@@ -102,9 +99,8 @@ public class StudentsPrepearedStatementDAO implements StudentsDAO {
 
 
     enum SQLStudent {
-//        INSERT("INSERT INTO students (id, name, age, groups) VALUES (?,?,?,?)"),
 
-        INSERT("INSERT INTO students (id, name, age, groups) VALUES (?,?,?)"),
+        INSERT("INSERT INTO students (id, name, age, groups) VALUES (?,?,?,?)"),
 
         SELECT("SELECT * FROM students");
 

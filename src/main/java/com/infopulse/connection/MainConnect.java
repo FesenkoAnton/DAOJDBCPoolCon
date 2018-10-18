@@ -2,17 +2,17 @@ package com.infopulse.connection;
 
 import java.sql.Connection;
 
-public class Connect {
+public class MainConnect {
 
     private static ConnectPool connectPool = new ConnectPool();
 
-    public static Connection getConn(){
+    public static Connection getConnect(){
         Connection connection = connectPool.getFromPoolCon();
         return connection;
     }
 
     public static void putConn(Connection connection){
-        connectPool.conToPool(connection);
+        connectPool.connectToPool(connection);
     }
 
 }

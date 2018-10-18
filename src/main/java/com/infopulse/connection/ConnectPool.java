@@ -9,40 +9,42 @@ import java.util.List;
 
 public class ConnectPool {
     private static final Logger logger = Logger.getLogger(ConnectPool.class);
-    private final int MAX_CONNECT=5;
-    private List<Connection> conn = new ArrayList<>();
+    private final int MAX_CONNECT = 5;
+    private List<Connection> connectArray = new ArrayList<>();
 
-    ConnectPool(){
+    ConnectPool() {
         fullConnectPool();
     }
 
     private void fullConnectPool() {
-        while (!checkPoolIsFull()) {
-            conn.add(ConnectionFactory.getConnection());
+        while (poolIsFull()) {
+            connectArray.add(ConnectionFactory.getConnection());
         }
     }
 
-    private synchronized boolean checkPoolIsFull() {
-        if (conn.size() < MAX_CONNECT) {
-            return false;
+    private synchronized boolean poolIsFull() {
+        if (connectArray.size() < MAX_CONNECT) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     public synchronized Connection getFromPoolCon() {
         Connection connection = null;
-        if (conn.size() > 0) {
-            connection = conn.get(0);
-            conn.remove(0);
+        if (connectArray.size() > 0) {
+            connection = connectArray.get(0);
+            connectArray.remove(0);
+        } else {
+            logger.error("Reached the maximum of the pool.");
         }
         return connection;
     }
 
-    public synchronized void conToPool(Connection connection) {
-        if(conn.size() < 5) {
-            conn.add(connection);
-        }else{
-            logger.error("try do conn.size > max value.");
+    public synchronized void connectToPool(Connection connection) {
+        if (connectArray.size() < 5) {
+            connectArray.add(connection);
+        } else {
+            logger.error("try do connectArray.size > max value.");
         }
     }
 

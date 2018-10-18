@@ -2,17 +2,16 @@ package com.infopulse.dao;
 
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
+
 public class StudentsStatementDAOTest {
 
 
     @Test
     public void testStudentsCallableStatement() {
 
-//
-//        ConnectionFactory.setPASSWORD("anton1!");
-
         StudentsStatementDAO student = new StudentsStatementDAO();
-        System.out.println(student.getStudent(1));
+        assertEquals("Olya",student.getStudent(1).getName() );
 
     }
 }

@@ -1,23 +1,28 @@
 package com.infopulse.dao;
 
+import com.infopulse.students.Student;
 import org.junit.Test;
+
+import java.util.Set;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class StudentsPrepearedStatementDAOTest {
 
     @Test
     public void testPrepearedStatement() {
-//
-//        ConnectionFactory.setPASSWORD("anton1!");
 
-        StudentsDAO sps = new StudentsPrepearedStatementDAO();
-//        System.out.println(sps.insertStudent(27,"Oleg",21,1));
 
-        sps.insertStudent((long) 56,"Lolita",24,7);
+        StudentsDAO statementDAO = new StudentsPrepearedStatementDAO();
 
-//        sps.getAllStudents().forEach(System.out::println);
-//        for (
-//                Student st : sps.getAllStudents())
-//            System.out.println(st);
+        statementDAO.insertStudent((long) 65,"Loli11",24,7);
+
+        Set<Student> students = statementDAO.getAllStudents();
+
+        Student studentResult = students.stream().filter(student -> student.getName().equals("Loli11"))
+                                                 .findFirst()
+                                                 .get();
+        assertEquals("Loli11", studentResult.getName());
 
     }
 }

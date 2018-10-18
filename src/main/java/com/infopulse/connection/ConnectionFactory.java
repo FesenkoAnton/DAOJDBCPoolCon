@@ -13,14 +13,14 @@ public class ConnectionFactory {
 
     public static Connection getConnection() {
         try {
-            Class.forName(propFileData.getProper().getProperty("DB_DRIVER_CLASS"));
+            Class.forName(propFileData.getProperties().getProperty("DB_DRIVER_CLASS"));
         } catch (ClassNotFoundException e) {
             logger.error(e);
         }
         try {
-            return DriverManager.getConnection(propFileData.getProper().getProperty("DB_URL"),
-                    propFileData.getProper().getProperty("DB_USERNAME"),
-                    propFileData.getProper().getProperty("DB_PASSWORD"));
+            return DriverManager.getConnection(propFileData.getProperties().getProperty("DB_URL"),
+                    propFileData.getProperties().getProperty("DB_USERNAME"),
+                    propFileData.getProperties().getProperty("DB_PASSWORD"));
 
         } catch (SQLException e) {
             logger.error("Connection to DB is abort ", e);
