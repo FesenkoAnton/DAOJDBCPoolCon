@@ -16,14 +16,6 @@ public class Student {
     private Integer age;
     private Integer groups;
 
-    public Student(String name, Integer age, Integer groups) {
-        this.name = name;
-        this.age = age;
-        this.groups = groups;
-
-    }
-
-
     @Override
     public String toString() {
         return "Student{" +

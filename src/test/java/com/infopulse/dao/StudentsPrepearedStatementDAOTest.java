@@ -15,7 +15,7 @@ public class StudentsPrepearedStatementDAOTest {
 
         StudentsDAO statementDAO = new StudentsPrepearedStatementDAO();
 
-        statementDAO.insertStudent((long) 67,"Loli11",24,7);
+        statementDAO.insertStudent((long) 69,"Loli11",24,7);
 
         Set<Student> students = statementDAO.getAllStudents();
 
