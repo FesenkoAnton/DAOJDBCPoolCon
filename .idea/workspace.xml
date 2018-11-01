@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5da11d57-dc33-4fac-b800-c8a2be3bf7db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/infopulse/dao/StudentsPrepearedStatementDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/infopulse/dao/StudentsPrepearedStatementDAOTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="5da11d57-dc33-4fac-b800-c8a2be3bf7db" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -101,6 +99,10 @@
           <entry key="PLAIN_TEXT" value="9" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.vcs.git.usages" />
     </session>
   </component>
   <component name="FileEditorManager">
@@ -156,6 +158,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="b0350691-1800-438d-b776-54f775e3910c" />
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -625,7 +630,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541068586352" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541070372425" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
@@ -746,7 +751,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541068197297</updated>
-      <workItem from="1541068200098" duration="768000" />
+      <workItem from="1541068200098" duration="2163000" />
     </task>
     <task id="LOCAL-00001" summary="test test">
       <created>1541068598983</created>
@@ -776,7 +781,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="768000" />
+    <option name="totallyTimeSpent" value="2163000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1362" y="-4" width="1288" height="1032" extended-state="6" />
