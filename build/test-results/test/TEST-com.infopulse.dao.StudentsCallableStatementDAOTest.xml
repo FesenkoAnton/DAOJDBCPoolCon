@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.infopulse.dao.StudentsCallableStatementDAOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-01T10:31:12" hostname="kv-po-antfesenkonb" time="0.374">
+<testsuite name="com.infopulse.dao.StudentsCallableStatementDAOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-01T12:57:08" hostname="kv-po-antfesenkonb" time="0.375">
   <properties/>
-  <testcase name="testCallableStatement" classname="com.infopulse.dao.StudentsCallableStatementDAOTest" time="0.374"/>
+  <testcase name="testCallableStatement" classname="com.infopulse.dao.StudentsCallableStatementDAOTest" time="0.375"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
