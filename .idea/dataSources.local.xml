@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="infop@localhost" uuid="c4578139-63d6-4f72-9ac6-554ae2bedac3">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="POSTGRES" exact-version="0.0" />
+      <introspection-schemas>@:@,information_schema,pg_catalog,pg_temp_1,pg_toast,pg_toast_temp_1</introspection-schemas>
+    </data-source>
+  </component>
+</project>
